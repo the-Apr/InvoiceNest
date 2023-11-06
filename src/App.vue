@@ -1,9 +1,12 @@
 <template>
-  <div>
+  <div v-if="invoicesLoaded">
     <div v-if="!mobile" class="app">
       <navigation />
       <div class="app-content">
-        <invoice-modal />
+        <modal v-if="modalActive"/>
+        <transition name="invoice">
+          <invoice-modal v-if="invoiceModal"/>
+        </transition>
         <router-view />
       </div>
     </div>
@@ -15,15 +18,18 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex"
 import Navigation from '@/components/Navigation.vue'
 import InvoiceModal from '@/components/InvoiceModal.vue'
+import Modal from '@/components/Modal.vue'
 
 export default {
   name: "app",
   
   components: {
     Navigation,
-    InvoiceModal
+    InvoiceModal,
+    Modal
   },
 
   data() {
@@ -33,11 +39,19 @@ export default {
   },
 
   created() {
+    this.getInvoices();
     this.checkScreen();
     window.addEventListener("resize", this.checkScreen)
   },
 
+  computed : {
+    ...mapState(['invoiceModal', 'modalActive', 'invoicesLoaded'])
+
+  },
+
   methods: {
+    ...mapActions(['getInvoices', '  ']),
+
     checkScreen() {
       const windowWidth = window.innerWidth;
       if (windowWidth <= 750) {
@@ -95,6 +109,18 @@ $box-shadow:  0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.
   p { 
     margin-top: 16px;
   }
+}
+
+//animated invoice
+
+.invoice-enter-active,
+.invoice-leave-active {
+  transition: 0.8s ease all;
+}
+
+.invoice-enter-from,
+.invoice-leave-to {
+  transform: translateX(-700px);
 }
 
 button,
