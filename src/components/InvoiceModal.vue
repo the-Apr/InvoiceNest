@@ -75,7 +75,8 @@
         </div>
         <div class="input flex flex-col">
           <label for="paymentTerms">Payment Terms</label>
-          <select required name="" id="paymentTerms" v-model="paymentTerms">
+          <select required name="" id="paymentTerms" v-model="paymentTerms"> 
+            <option value="" disabled selected>Select an option</option>
             <option value="30">Net 30 Days</option>
             <option value="60">Net 60 Days</option>
           </select>
@@ -382,6 +383,7 @@ export default {
 .invoice-wrap{
   @apply fixed top-0 left-0 w-full overflow-scroll bg-transparent;
   height: 100vh;
+  z-index: 1;
   &::-webkit-scrollbar{
     display: none;
   }

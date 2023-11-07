@@ -1,4 +1,6 @@
 <template>
+<div class="modal-overlay">
+
   <div class="modal flex">
     <div class="modal-content">
       <p>Are you sure you want to exit? Your changes will not be saved?</p>
@@ -8,6 +10,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -41,7 +44,7 @@ methods: {
 
 <style lang="scss" scoped>
 .modal {
-  z-index: 100;
+  // z-index: 1;
   position: fixed;
   justify-content: center;
   align-items: center;
@@ -67,4 +70,15 @@ methods: {
     }
   }
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  z-index: 2; /* Position it above other content, but below the modal */
+}
+
 </style>
