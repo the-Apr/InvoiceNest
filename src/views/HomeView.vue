@@ -81,6 +81,7 @@ export default {
     },
 
     ...mapMutations(['toggleInvoice']),
+    
     newInvoice() {
       this.toggleInvoice()
     },

@@ -1,4 +1,5 @@
 <template>
+
   <div @click="checkClick" ref="invoiceWrap" class="invoice-wrap flex flex-col">
     <form @submit.prevent="submitForm" class="invoice-content">
       <loading v-show="loading" />
@@ -24,7 +25,10 @@
           </div>
           <div class="input flex flex-col">
             <label for="billerCountry">Country</label>
-            <input required type="text" name="" id="billerCountry" v-model="billerCountry">
+            <select required id="billerCountry" v-model="billerCountry" @change="handleCountryChange">
+              <option value="" disabled selected>Select your country</option>
+              <option v-for="country in countries" :key="country.cioc" :value="country.alpha2Code">{{ country.name.common }}</option>
+            </select>
           </div>
         </div>
       </div>
@@ -56,7 +60,11 @@
           </div>
           <div class="input flex flex-col">
             <label for="clientCountry">Client Country</label>
-            <input required type="text" name="" id="clientCountry" v-model="clientCountry">
+
+            <select required id="clientCountry" v-model="clientCountry" @change="handleCountryChange">
+              <option value="" disabled selected>Select your country</option>
+              <option v-for="country in countries" :key="country.cioc" :value="country.alpha2Code">{{ country.name.common }}</option>
+            </select>
           </div>
         </div>
       </div>
@@ -85,6 +93,7 @@
           <label for="productDescription">Product Description</label>
           <input required type="text" name="" id="productDescription" v-model="productDescription">
         </div>
+        
         <div class="work-items">
           <h3>Item List</h3>
           <table class="item-list">
@@ -146,8 +155,10 @@ export default {
   components: {
     Loading,
   },
+
   data() {
     return {
+      countries: [],
       docId: null,
       loading: null,
       dateOptions: { year: "numeric", month: "short", day: "numeric" },
@@ -210,14 +221,33 @@ export default {
     }
   },
 
+  mounted() {
+    this.fetchCountries();
+  },
+
   methods: {
     ...mapMutations(['toggleInvoice', 'toggleModal', 'toggleEditInvoice']),
 
     ...mapActions(['updateInvoice', 'getInvoices']),
 
+    fetchCountries() {
+      fetch("https://restcountries.com/v3.1/all")
+        .then((response) => response.json())
+        .then((data) => {
+          this.countries = data;
+          this.billerCountry = data[0].alpha2Code; // Set an initial selected country
+          this.handleCountryChange();
+        });
+    },
+
+    handleCountryChange() {
+      this.selectedCountryData = this.countries.find((country) => this.selectedCountry === country.alpha2Code);
+    },
+
     checkClick(e) {
       if(e.target ===this.$refs.invoiceWrap) {
         this.toggleModal();
+        console.log('you clicked me')
       }
     },
 
