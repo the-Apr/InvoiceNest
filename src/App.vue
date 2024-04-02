@@ -20,7 +20,7 @@
 <script>
 import { mapState, mapActions } from "vuex"
 import Navigation from '@/components/Navigation.vue'
-import InvoiceModal from '@/components/InvoiceModal.vue'
+import InvoiceModal from '@/components/InvoiceForm.vue'
 import Modal from '@/components/Modal.vue'
 
 export default {

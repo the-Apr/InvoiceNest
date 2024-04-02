@@ -7,6 +7,7 @@
         <span v-else>There are {{invoiceData.length}} total invoices</span>
         
       </div>
+
       <div class="right flex">
         <div @click="toggleFilterMenu" class="filter flex">
           <span>Filter by status <span v-if="filteredInvoice">: {{filteredInvoice}}</span></span>
@@ -30,6 +31,8 @@
     <div v-if="invoiceData.length > 0">
       <invoice v-for="(invoice, index) in filteredData" :invoice= "invoice" :key="index"/>
     </div>
+
+    <!-- empty list -->
     <div v-else class="empty flex flex-col">
       <img src="../assets/Wavy_Gen-03_Single-01.jpg" alt="">
       <h3>This is nothing here</h3>
@@ -41,7 +44,7 @@
 <script>
 // @ is an alias to /src
 import { mapMutations, mapState } from 'vuex';
-import Invoice from '@/components/Invoice.vue'
+import Invoice from '@/components/InvoiceItem.vue'
 
 export default {
   name: 'HomeView',

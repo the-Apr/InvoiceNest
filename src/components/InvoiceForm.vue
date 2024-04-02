@@ -162,7 +162,6 @@ export default {
       docId: null,
       loading: null,
       dateOptions: { year: "numeric", month: "short", day: "numeric" },
-      docId: null,
       loading: null,
       billerStreetAddress: null,
       billerCity: null,
@@ -247,7 +246,6 @@ export default {
     checkClick(e) {
       if(e.target ===this.$refs.invoiceWrap) {
         this.toggleModal();
-        console.log('you clicked me')
       }
     },
 
