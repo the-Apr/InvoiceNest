@@ -19,6 +19,7 @@
             <li @click="filteredInvoices">Clear Filter</li>
           </ul>
         </div>
+        
         <div @click="newInvoice" class="button flex">
           <div class="inner-button flex">
             <fa-icon class="icon" :icon="['fas', 'plus']" />

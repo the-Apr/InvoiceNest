@@ -23,8 +23,11 @@
 
       <div class="right flex">
         <button @click="toggleInvoiceEdit" class="dark-purple">Edit</button>
+
         <button @click="deleteInvoice(currentInvoice.docId)" class="red">Delete</button>
+
         <button v-if="currentInvoice.invoicePending" @click="updateStatusToPaid(currentInvoice.docId)" class="green">Mark as Paid</button>
+
         <button v-if="currentInvoice.invoiceDraft || currentInvoice.invoicePaid" @click="updateStatusToPending(currentInvoice.docId)" class="orange">Mark as Pending</button>
       </div>
     </div>
@@ -119,6 +122,7 @@ export default {
     getCurrentInvoice() {
       this.setCurrentInvoice(this.$route.params.invoiceId);
       this.currentInvoice = this.currentInvoiceArray[0];
+      console.log(this.currentInvoice)
     },
 
     toggleInvoiceEdit() {

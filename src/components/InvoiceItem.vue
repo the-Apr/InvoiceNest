@@ -18,6 +18,7 @@
           <span v-if="invoice.invoiceDraft">Draft</span>
           <span v-if="invoice.invoicePending">Pending</span>
         </div>
+        
         <div class="icon">
          <fa-icon :icon="['fas', 'arrow-right']" />
         </div>
