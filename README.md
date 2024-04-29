@@ -1,4 +1,4 @@
-# invoice-app
+# InvoiceNest
 
 ## Project setup
 ```
