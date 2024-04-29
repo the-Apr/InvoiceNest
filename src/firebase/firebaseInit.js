@@ -3,13 +3,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCH4ewPQ7sNxPsGhsuvFXS-arsjnZ64-YI",
-  authDomain: "invoice-app-58d80.firebaseapp.com",
-  projectId: "invoice-app-58d80",
-  storageBucket: "invoice-app-58d80.appspot.com",
-  messagingSenderId: "416728065726",
-  appId: "1:416728065726:web:c07d985701ebda8b41e0ef",
-  measurementId: "G-4KD6JMC1ZN"
+  apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+  authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.VUE_APP_FIREBASE_APP_ID,
+  measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
